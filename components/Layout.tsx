@@ -7,7 +7,13 @@ type Props = {
 };
 
 const Layout = ({ children, title = "This is the default title" }: Props) => (
-  <div className="relative min-h-screen flex flex-col justify-center items-center bg-hero bg-cover overflow-x-hidden">
+  <div
+    style={{
+      backgroundImage: "url('/images/shapes.jpg')",
+      backgroundPosition: "center",
+    }}
+    className="relative min-h-screen  backdrop-blur-[2px] flex flex-col justify-center items-center bg-hero bg-cover overflow-x-hidden"
+  >
     <Head>
       <title>{title} | Suzangaron Hotel</title>
       <meta charSet="utf-8" />
