@@ -2,15 +2,15 @@ import Link from "next/link";
 import Layout from "../components/Layout";
 
 const IndexPage = () => (
-  <Layout title="Coming Soon - Clean Coming Soon Page (Tailwind CSS, NextJs & HTML5) created by themeptation.net">
+  <Layout title="Coming Soon">
     <img
-      src="/images/xera.svg"
-      alt="Themeptation "
+      src="/images/xera.png"
+      alt="Suzangaron Hotel "
       className="absolute h-96 -top-20 -right-16 lg:right-5 lg:top-10 animate-blob"
     />
     <img
       src="/images/shapes.svg"
-      alt="hero"
+      alt="Suzangaron Hotel"
       className="absolute w-full left-24 bottom-24 animate-blob2"
     />
     <div className="relative z-10 py-6 space-y-16 lg:space-y-32 text-gray-900">
@@ -18,13 +18,15 @@ const IndexPage = () => (
         <h3 className="font-light text-xl uppercase tracking-wider">
           Coming soon
         </h3>
-        <h1 className="text-7xl lg:text-9xl font-extrabold">We’r blowing up</h1>
+        <h1 className="text-7xl lg:text-9xl font-extrabold">
+          Suzangaron Hotel
+        </h1>
         <p className="text-xl lg:text-2xl tracking-wide mx-10 lg:max-w-xl lg:mx-auto">
           We`re under construction. Check back for an update soon. Stay in
           touch!
         </p>
       </div>
-      <form className="relative z-10 mx-10 lg:max-w-xl lg:mx-auto">
+      {/* <form className="relative z-10 mx-10 lg:max-w-xl lg:mx-auto">
         <input
           type="text"
           placeholder="hi@themeptation.net"
@@ -33,12 +35,12 @@ const IndexPage = () => (
         <button className="absolute top-1 right-1 bottom-1 px-4 lg:px-10 text-xl font-semibold bg-gray-900 text-white rounded-xl transition ease-in-out duration-500 hover:bg-red-500">
           Notify me
         </button>
-      </form>
+      </form> */}
     </div>
     <div className="absolute bottom-5">
       <ul className="flex space-x-3">
         <li>
-          <Link href="https://themeptation.net">
+          <Link href="https://www.instagram.com/suzangaron.hotel/">
             <a className="flex items-center justify-center w-10 h-10 rounded-full bg-gray-50 transition ease-in-out duration-500 hover:bg-red-500 hover:text-white hover:shadow-lg">
               <svg
                 className="w-6 h-6"
@@ -55,7 +57,7 @@ const IndexPage = () => (
             </a>
           </Link>
         </li>
-        <li>
+        {/* <li>
           <Link href="https://themeptation.net">
             <a className="flex items-center justify-center w-10 h-10 rounded-full bg-gray-50 transition ease-in-out duration-500 hover:bg-red-500 hover:text-white hover:shadow-lg">
               <svg
@@ -68,9 +70,9 @@ const IndexPage = () => (
               </svg>
             </a>
           </Link>
-        </li>
+        </li> */}
         <li>
-          <Link href="https://themeptation.net">
+          <Link href="https://suzangaronhotel.com/">
             <a className="flex items-center justify-center w-10 h-10 rounded-full bg-gray-50 transition ease-in-out duration-500 hover:bg-red-500 hover:text-white hover:shadow-lg">
               <svg
                 className="w-6 h-6"
@@ -88,7 +90,7 @@ const IndexPage = () => (
           </Link>
         </li>
         <li>
-          <Link href="https://themeptation.net">
+          <Link href="https://m.facebook.com/106810001142987/">
             <a className="flex items-center justify-center w-10 h-10 rounded-full bg-gray-50 transition ease-in-out duration-500 hover:bg-red-500 hover:text-white hover:shadow-lg">
               <svg
                 className="w-6 h-6"
