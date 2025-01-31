@@ -2,6 +2,9 @@ import React, { useState } from "react";
 
 export default function Modal({ room, noOfDays, startDate, endDate }) {
   const [open, setOpen] = useState(false);
+  const [name, setName] = useState("");
+  const [surName, setSurName] = useState("");
+  const [email, setEmail] = useState("");
   const total = noOfDays * room.price;
   function generateUUID() {
     // Public Domain/MIT
@@ -45,9 +48,9 @@ export default function Modal({ room, noOfDays, startDate, endDate }) {
         init_time: generateDatabaseDateTime(new Date()),
         test: true,
         user_data: {
-          user_id: "Johnny",
+          user_id: `${name}  ${surName}`,
           phone: "9989014567",
-          email: "octo@mail.comds",
+          email: email,
         },
         total_sum: total,
         currency: "UZS",
@@ -59,7 +62,7 @@ export default function Modal({ room, noOfDays, startDate, endDate }) {
             price: room.price,
           },
         ],
-        return_url: "https://suzangaronhotel.com/paid",
+        return_url: "https://suzangaronhotel.com/Paid",
         language: "uz",
       }),
     })
@@ -80,25 +83,37 @@ export default function Modal({ room, noOfDays, startDate, endDate }) {
       {open && (
         <div className="w-screen h-screen bg-black bg-opacity-50 z-50 fixed left-0 top-0  flex items-center justify-center">
           <form
-            className="w-[500px] py-10 bg-white p-8 flex flex-col"
+            className="w-[500px] py-10 bg-white p-8 flex flex-col relative"
             onSubmit={(e) => e.preventDefault()}
           >
             <h1 className="text-lg font-medium">Enter your details</h1>
+            <span
+              className="absolute right-8 top-8 cursor-pointer"
+              onClick={() => setOpen(false)}
+            >
+              X
+            </span>
             <label className="mt-5 mb-2">Name</label>
             <input
               type="text"
+              value={name}
+              onChange={(e) => setName(e.target.value)}
               placeholder="Name"
               className="border border-gray-200 focus:outline-none rounded-sm py-1 px-3"
             />
 
             <label className="mt-5 mb-2">Surname</label>
             <input
+              value={surName}
+              onChange={(e) => setSurName(e.target.value)}
               type="text"
               placeholder="Surname"
               className="border border-gray-200 focus:outline-none rounded-sm py-1 px-3"
             />
             <label className="mt-5 mb-2">email</label>
             <input
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
               type="text"
               placeholder="Email"
               className="border border-gray-200 focus:outline-none rounded-sm py-1 px-3"
