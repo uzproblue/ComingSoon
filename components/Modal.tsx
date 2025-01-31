@@ -51,7 +51,6 @@ export default function Modal({ room, noOfDays, startDate, endDate }) {
         },
         total_sum: total,
         currency: "UZS",
-        tag: "ticket",
         description: "TEST_PAYMENT",
         basket: [
           {
@@ -60,9 +59,7 @@ export default function Modal({ room, noOfDays, startDate, endDate }) {
             price: room.price,
           },
         ],
-        tsp_id: 18,
         return_url: "https://suzangaronhotel.com/paid",
-        notify_url: "https://notify-url.uz",
         language: "uz",
       }),
     })
