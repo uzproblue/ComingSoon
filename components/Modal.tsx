@@ -1,10 +1,12 @@
 import React, { useState } from "react";
+import PublicOffer from "./PublicOffer";
 
 export default function Modal({ room, noOfDays, startDate, endDate }) {
   const [open, setOpen] = useState(false);
   const [name, setName] = useState("");
   const [surName, setSurName] = useState("");
   const [email, setEmail] = useState("");
+  const [accepted, setAccepted] = useState(false);
   const total = noOfDays * room.price;
   function generateUUID() {
     // Public Domain/MIT
@@ -118,11 +120,7 @@ export default function Modal({ room, noOfDays, startDate, endDate }) {
               placeholder="Email"
               className="border border-gray-200 focus:outline-none rounded-sm py-1 px-3"
             />
-            <p className="mt-8 flex gap-1">
-              <input type="checkbox" />
-              Accept Public agreement
-            </p>
-
+            <PublicOffer accepted={accepted} setAccepted={setAccepted} />
             <button
               onClick={() => handlePurchase()}
               className="py-2 w-full bg-blue-500 text-white mt-3"
