@@ -1,5 +1,6 @@
 import React from "react";
 import Image from "next/image";
+import Link from "next/link";
 export default function Footer() {
   return (
     <div className=" flex items-center justify-start gap-5 p-4 ">
@@ -32,8 +33,9 @@ export default function Footer() {
         className="object-contain"
       />
       <div className="w-full flex justify-center">
-        <p>2024</p>
+        <Link href="/publicOffer">Public Offer</Link>
       </div>
+      <p>2025</p>
     </div>
   );
 }
