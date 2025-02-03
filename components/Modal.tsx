@@ -7,6 +7,7 @@ export default function Modal({ room, noOfDays, startDate, endDate }) {
   const [surName, setSurName] = useState("");
   const [email, setEmail] = useState("");
   const [accepted, setAccepted] = useState(false);
+  const [error, setError] = useState(false);
   const total = noOfDays * room.price;
   function generateUUID() {
     // Public Domain/MIT
@@ -40,39 +41,42 @@ export default function Modal({ room, noOfDays, startDate, endDate }) {
   const handlePurchase = () => {
     const id = generateUUID();
     localStorage.setItem("id", id);
-    fetch("https://secure.octo.uz/prepare_payment", {
-      method: "POST",
-      body: JSON.stringify({
-        octo_shop_id: 23532,
-        octo_secret: "c1ba3629-c5e6-44a1-a7bd-661159abcaaf",
-        shop_transaction_id: id,
-        auto_capture: true,
-        init_time: generateDatabaseDateTime(new Date()),
-        test: true,
-        user_data: {
-          user_id: `${name}  ${surName}`,
-          phone: "9989014567",
-          email: email,
-        },
-        total_sum: total,
-        currency: "UZS",
-        description: "TEST_PAYMENT",
-        basket: [
-          {
-            position_desc: room.name,
-            count: Number(noOfDays),
-            price: room.price,
+    if (!accepted) {
+      setError(true);
+    } else
+      fetch("https://secure.octo.uz/prepare_payment", {
+        method: "POST",
+        body: JSON.stringify({
+          octo_shop_id: 23532,
+          octo_secret: "c1ba3629-c5e6-44a1-a7bd-661159abcaaf",
+          shop_transaction_id: id,
+          auto_capture: true,
+          init_time: generateDatabaseDateTime(new Date()),
+          test: true,
+          user_data: {
+            user_id: `${name}  ${surName}`,
+            phone: "9989014567",
+            email: email,
           },
-        ],
-        return_url: "https://suzangaronhotel.com/Paid",
-        language: "uz",
-      }),
-    })
-      .then((res) => res.json())
-      .then((data) => {
-        window.open(data.data.octo_pay_url, "_blank").focus();
+          total_sum: total,
+          currency: "UZS",
+          description: "TEST_PAYMENT",
+          basket: [
+            {
+              position_desc: room.name,
+              count: Number(noOfDays),
+              price: room.price,
+            },
+          ],
+          return_url: "https://suzangaronhotel.com/Paid",
+          language: "uz",
+        }),
       })
-      .catch((err) => console.log(err));
+        .then((res) => res.json())
+        .then((data) => {
+          window.open(data.data.octo_pay_url, "_blank").focus();
+        })
+        .catch((err) => console.log(err));
   };
   return (
     <>
@@ -100,6 +104,7 @@ export default function Modal({ room, noOfDays, startDate, endDate }) {
               type="text"
               value={name}
               onChange={(e) => setName(e.target.value)}
+              required
               placeholder="Name"
               className="border border-gray-200 focus:outline-none rounded-sm py-1 px-3"
             />
@@ -107,6 +112,7 @@ export default function Modal({ room, noOfDays, startDate, endDate }) {
             <label className="mt-5 mb-2">Surname</label>
             <input
               value={surName}
+              required
               onChange={(e) => setSurName(e.target.value)}
               type="text"
               placeholder="Surname"
@@ -115,13 +121,22 @@ export default function Modal({ room, noOfDays, startDate, endDate }) {
             <label className="mt-5 mb-2">email</label>
             <input
               value={email}
+              required
               onChange={(e) => setEmail(e.target.value)}
               type="text"
               placeholder="Email"
               className="border border-gray-200 focus:outline-none rounded-sm py-1 px-3"
             />
-            <PublicOffer accepted={accepted} setAccepted={setAccepted} />
+            <PublicOffer
+              accepted={accepted}
+              setAccepted={setAccepted}
+              setError={setError}
+            />
+            {error && (
+              <p className="text-red-600">Public offer should be accepted!</p>
+            )}
             <button
+              type="submit"
               onClick={() => handlePurchase()}
               className="py-2 w-full bg-blue-500 text-white mt-3"
             >

@@ -1,21 +1,23 @@
 "use client";
 import React, { useState } from "react";
 
-export default function PublicOffer({ accepted, setAccepted }: any) {
+export default function PublicOffer({ accepted, setAccepted, setError }: any) {
   const [open, setOpen] = useState(false);
   return (
     <>
       <p onClick={() => setOpen(true)} className="mt-8 flex gap-1">
-        <input
-          type="checkbox"
-          checked={accepted}
-          onChange={(e) => setAccepted(e.target.checked)}
-        />
+        <input type="checkbox" checked={accepted} />
         Accept Public agreement
       </p>
       {open && (
         <div className="w-screen h-screen bg-black bg-opacity-50 z-50 fixed left-0 top-0  flex items-center justify-center">
-          <div className="w-[500px] bg-white p-8 max-h-[700px] overflow-y-scroll">
+          <div className="w-[500px] bg-white p-8 max-h-[700px] overflow-y-scroll relative">
+            <span
+              className="absolute right-8 top-8 cursor-pointer"
+              onClick={() => setOpen(false)}
+            >
+              X
+            </span>
             <h1 className="text-lg font-medium">
               Public Agreement for Suzangaron Hotel Booking Website
             </h1>
@@ -122,6 +124,7 @@ export default function PublicOffer({ accepted, setAccepted }: any) {
               onClick={() => {
                 setAccepted(true);
                 setOpen(false);
+                setError(false);
               }}
               className="py-2 w-full bg-blue-500 text-white mt-3"
             >
