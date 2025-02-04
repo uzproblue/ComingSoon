@@ -1,7 +1,7 @@
 const rooms = [
   {
     name: "Single",
-    price: 60,
+    price: 0.1,
     numberOfRooms: 10,
     image: "/images/double.jpg",
   },

@@ -52,20 +52,22 @@ export default function Modal({ room, noOfDays, startDate, endDate }) {
           shop_transaction_id: id,
           auto_capture: true,
           init_time: generateDatabaseDateTime(new Date()),
-          test: true,
+          test: false,
           user_data: {
             user_id: `${name}  ${surName}`,
             phone: "9989014567",
             email: email,
           },
-          total_sum: total,
-          currency: "USD",
-          description: "TEST_PAYMENT",
+          total_sum: total * 13100,
+          currency: "UZS",
+          description: `${
+            room.name
+          } room for ${noOfDays}day(s) (${startDate.toLocaleDateString()}-${endDate.toLocaleDateString()} ), total:${total}$`,
           basket: [
             {
               position_desc: room.name,
               count: Number(noOfDays),
-              price: room.price,
+              price: room.price * 13100,
             },
           ],
           return_url: "https://suzangaronhotel.com/Paid",
