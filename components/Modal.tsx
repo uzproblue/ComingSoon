@@ -59,7 +59,7 @@ export default function Modal({ room, noOfDays, startDate, endDate }) {
             email: email,
           },
           total_sum: total,
-          currency: "UZS",
+          currency: "USD",
           description: "TEST_PAYMENT",
           basket: [
             {
