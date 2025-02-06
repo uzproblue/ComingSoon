@@ -31,7 +31,7 @@ const rooms = [
   },
   {
     name: "Vip all inclusive",
-    price: 5000,
+    price: 4900,
     numberOfRooms: 10,
     image: "/images/vip.jpg",
   },
